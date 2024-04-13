@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+
+        body {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        a{
+            text-align: center;
+            margin-top: 245px;
+
+        }
+
+        .contact-us {
+            background: #f8f4e5;
+            padding: 50px 100px;
+            border: 2px solid rgba(0, 0, 0, 1);
+            box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        .contact-us input {
+            display: block;
+            width: 100%;
+            font-size: 14pt;
+            line-height: 28pt;
+            font-family: 'Fjalla One';
+            margin-bottom: 28pt;
+            border: none;
+            border-bottom: 5px solid rgba(0, 0, 0, 1);
+            background: #f8f4e5;
+            min-width: 250px;
+            padding-left: 5px;
+            outline: none;
+            color: rgba(0, 0, 0, 1);
+        }
+
+        .contact-us input:focus {
+            border-bottom: 5px solid #ffa580;
+        }
+
+        .contact-us button {
+            display: block;
+            margin: 0 auto;
+            line-height: 28pt;
+            padding: 0 20px;
+            background: #ffa580;
+            letter-spacing: 2px;
+            transition: .2s all ease-in-out;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 1px 1px #95a4ff, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        .contact-us button:hover {
+            background: rgba(0, 0, 0, 1);
+            color: white;
+            border: 1px solid rgba(0, 0, 0, 1);
+        }
+
+        ::selection {
+            background: #ffc8ff;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            border-bottom: 5px solid #95a4ff;
+            -webkit-text-fill-color: #2A293E;
+            -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-us">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="password" required="">
+            <input type="password" name="password" placeholder="password" required="">
+            <button type="submit">SIGN IN</button>
+            <a href="{% url "sign_up" %}">Sign UP ?</a>
+        </form>
+    </div>
+</body>
+</html>

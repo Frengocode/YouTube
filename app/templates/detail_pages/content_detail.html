@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="video-info">
+            <div class="user-info">
+                {% if contents.user.profile_photo %}
+                    <img src="{{ contents.user.profile_photo.url }}" alt="User Avatar">
+                    {% else %}
+                    <a href="{% url "user_profiles" contents.user.id %}"><img src="https://pbs.twimg.com/profile_images/1609255247578558467/mJaEuasV_400x400.jpg" class="profile-image" alt="Profile Image"></a>
+                {% endif %}
+                <h2>{{ contents.user }}</h2>
+            </div>  
+            <div class="stats">
+                <p>{{ contents.viewer }} views</p>
+                <a href="{% url "user_likes" contents.id %}"><p>{{ contents.like.count }} likes</p></a>
+                <p>{{ contents.dis_like.count }} dislikes</p>
+                <a href="{% url "followers" contents.user.id %}"><p>{{ contents.user.subscribe.count }} followers</p></a>
+
+                <form action="{% url "like" contents.id %}">
+                    {% csrf_token %}
+                    <button class="like-button"><i class="fas fa-thumbs-up"></i> Like</button>
+                </form>
+
+
+                <form action="{% url "dont_like" contents.id %}">
+                    {% csrf_token %}
+                    <button class="dislike-button"><i class="fas fa-thumbs-down"></i> Dislike</button>
+                </form>
+
+                <form action="{% url "follow" contents.user.id %}">
+                    <button class="subscribe-button">Subscribe</button>
+                    {% csrf_token %}
+                </form>
+
+            </div>
+            <h1>{{ contents.content_title }}</h1>
+        </div>
+        <div class="video">
+            <video src="{{ contents.video.url }}" controls></video>
+        </div>
+        <a href="{% url "commentarion_uploud" contents.id %}" class="button-comment">Comment</a>
+    </div>
+</body>
+</html>
+
+
+
+<style>
+
+    /* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Стили для информации о видео */
+.video-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stats p {
+    margin: 0;
+    color: #606060;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.stats button {
+    background-color: transparent;
+    border: none;
+    color: #606060;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.stats button:hover {
+    color: #000;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Стили для видео */
+.video {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.video video {
+    width: 100%;
+}
+
+/* Стили для кнопки комментария */
+.button-comment {
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button-comment:hover {
+    background-color: #ff0000;
+}
+
+</style>

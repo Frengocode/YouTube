@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новое для вас</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="new-for-you">
+        <h1>Новое для вас</h1>
+        <a href="{% url 'profile_change' %}" class="profile-link">По Выбранному Категории</a>
+        {% for i in interes %}
+        <div class="content">
+            <a href="{% url "detail" i.id %}"><img src="{{ i.content_albom.url }}" alt=""></a>
+            <h2>{{ i.content_title }}</h2>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Цвет фона страницы */
+}
+
+.new-for-you {
+    max-width: 800px; /* Максимальная ширина контейнера */
+    margin: 50px auto; /* Выравнивание по центру */
+    padding: 20px;
+    background-color: #fff; /* Цвет фона контейнера */
+    border: 1px solid #ddd; /* Граница контейнера */
+    border-radius: 8px; /* Закругление углов контейнера */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Цвет текста заголовка */
+}
+
+.profile-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #0073e6; /* Цвет ссылки */
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.content h2 {
+    font-size: 18px;
+    color: #333; /* Цвет текста контента */
+}
+
+</style>

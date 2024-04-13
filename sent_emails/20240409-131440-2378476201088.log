@@ -1,0 +1,24 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: wendypython17@gmail.com
+Date: Tue, 09 Apr 2024 08:14:40 -0000
+Message-ID: <171265048045.30496.18152646146780477183@DESKTOP-PSI09JM>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/password-reset/NQ/c57wsg-7e30b1590f4e232c42d39abdbfb750c8/
+
+Your username, in case you’ve forgotten: hello
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+-------------------------------------------------------------------------------

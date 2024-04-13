@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Комментарии</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="comments-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Отправить</button>
+        </form>
+
+        <div class="comments">
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="comment">
+                        <div class="user-info">
+                            {% if comment.user.profile_photo %}
+                            <img src="{{ comment.user.profile_photo.url }}" alt="User Photo">
+                            {% else %}
+                            <img class="user-avatar" src="https://pbs.twimg.com/profile_images/1609255247578558467/mJaEuasV_400x400.jpg" class="profile-image" alt="Profile Image">
+                            {% endif %}
+                            <span>{{ comment.user.username }}</span>
+                        </div>
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<style>
+
+    
+    button {
+    background-color: #ff0000; /* Красный цвет фона кнопки */
+    color: #fff; /* Белый цвет текста кнопки */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px; /* Закругление углов кнопки */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cc0000; /* Красный цвет фона кнопки при наведении */
+}
+
+
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Цвет фона страницы */
+}
+
+.comments-container {
+    max-width: 800px; /* Максимальная ширина контейнера */
+    margin: 50px auto; /* Выравнивание по центру */
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #fff; /* Цвет фона комментария */
+    padding: 10px;
+    border-radius: 5px; /* Закругление углов комментария */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Тень комментария */
+    margin-bottom: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.user-info img {
+    width: 30px; /* Ширина изображения пользователя */
+    height: 30px; /* Высота изображения пользователя */
+    border-radius: 50%; /* Закругление углов изображения пользователя */
+    margin-right: 10px;
+}
+
+.user-info span {
+    font-weight: bold;
+    color: #333; /* Цвет имени пользователя */
+}
+
+.comment p {
+    margin: 0;
+}
+
+</style>

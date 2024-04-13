@@ -1,0 +1,44 @@
+<div class="profile-container">
+    <h1 class="profile-username">{{ profile.username }}</h1>
+
+    <div class="profile-image-container">
+        {% if profile.profile_photo %}
+            <img src="{{ profile.profile_photo.url }}" class="profile-image" alt="Profile Image">
+        {% else %}
+            <img src="https://pbs.twimg.com/profile_images/1609255247578558467/mJaEuasV_400x400.jpg" class="profile-image" alt="Profile Image">
+        {% endif %}
+    </div>
+
+    <h2 class="subscribe-count">{{ profile.subscribe.count }}</h2>
+</div>
+
+<style>
+
+.profile-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-username {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.subscribe-count {
+    font-size: 18px;
+    color: #606060;
+}
+
+</style>

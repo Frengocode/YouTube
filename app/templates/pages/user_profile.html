@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой канал</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="channel">
+        <div class="channel-header">
+            {% if user.profile_photo %}
+            <img src="{{ user.profile_photo.url }}" alt="Аватар канала">
+            {% else %}
+                <img class="user-avatar" src="https://pbs.twimg.com/profile_images/1609255247578558467/mJaEuasV_400x400.jpg" class="profile-image" alt="Profile Image">
+            {% endif %}
+            <div class="channel-info">
+                <h1>{{ user.username }}</h1>
+                <p>{{ user.subscribe.count }}</p>
+            </div>
+        </div>
+        <div class="channel-description">
+            <p>{{ user.user_info }}</p>
+        </div>
+        <div class="channel-videos">
+            <h2>Видео на канале</h2>
+            {% for i in contents %}
+            <div class="video">
+                <a href="{% url "detail" i.id %}"><img src="{{ i.content_albom.url }}" alt="{{ i.content_title }}"></a>
+                <h3>{{ i.content_title }}</h3>
+                <h1></h1>
+            </div>
+            <h1></h1>
+            <a href="{% url "update" i.id %}"><button>Change Content</button></a>
+            <h1></h1>
+            <a href="{% url "delete" i.id %}"><button>Delete Content</button></a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+
+<nav class="bottom-menu">
+    <a href="{% url "search" %}" class="menu-item">
+        <i class="fa fa-search"></i>
+        <span>Search</span>
+    </a>
+    <a href="{% url "content" %}" class="menu-item">
+        <i class="fa fa-plus"></i>
+        <span>Add</span>
+    </a>
+    <a href="{% url 'home' %}" class="menu-item">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span>Home</span>
+    </a>
+    <a href="{% url "settings_components" %}" class="menu-item">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </a>
+    <a href="{% url "user-comments" %}" class="menu-item">
+        <i class="fa-solid fa-comment"></i>
+        <span>My Comments</span>
+    </a>
+</nav>
+
+
+
+
+<style>
+
+.bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .menu-item {
+            text-align: center;
+            flex: 1;
+            text-decoration: none;
+            color: #888;
+        }
+
+        .menu-item:hover {
+            color: #ff0000;
+        }
+
+        .menu-item i {
+            font-size: 20px;
+        }
+
+        .menu-item span {
+            display: block;
+            font-size: 12px;
+        }
+
+body {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.channel {
+    max-width: 800px; /* Максимальная ширина контейнера канала */
+    margin: 20px auto; /* Центрирование по горизонтали */
+    border: 1px solid #ddd; /* Граница контейнера */
+    border-radius: 8px; /* Закругление углов */
+    background-color: #c08600; /* Цвет фона контейнера */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+}
+
+.channel-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd; /* Граница под заголовком */
+}
+
+.channel-header img {
+    width: 100px; /* Ширина аватара канала */
+    height: 100px; /* Высота аватара канала */
+    border-radius: 50%; /* Закругление аватара */
+    margin-right: 20px;
+}
+
+.channel-info h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.channel-info p {
+    margin: 5px 0;
+    color: #666; /* Цвет текста информации о канале */
+}
+
+.channel-description,
+.channel-videos {
+    padding: 20px;
+}
+
+.channel-description h2,
+.channel-videos h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333; /* Цвет заголовков разделов */
+}
+
+.channel-description p {
+    margin: 10px 0;
+    color: #666; /* Цвет текста описания канала */
+}
+
+.video {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.video img {
+    width: 120px; /* Ширина изображения видео */
+    height: 90px; /* Высота изображения видео */
+    margin-right: 20px;
+    border-radius: 8px; /* Закругление углов изображения */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень изображения */
+}
+
+.video h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333; /* Цвет названия видео */
+}
+
+</style>

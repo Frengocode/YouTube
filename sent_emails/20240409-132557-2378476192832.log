@@ -1,0 +1,24 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: ibrohimpubg735@gmail.com
+Date: Tue, 09 Apr 2024 08:25:57 -0000
+Message-ID: <171265115792.30496.17747440110793203353@DESKTOP-PSI09JM>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/password-reset/Mw/c57xb9-02978301938940ace322fc1eb169517a/
+
+Your username, in case you’ve forgotten: Navi
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+-------------------------------------------------------------------------------

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои подписчики</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="followers-container">
+        <h1>Подписчики пользователя </h1>
+        <ul class="followers-list">
+            {% for follower in user_followers %}
+                <li>
+                    {% if follower.profile_photo %}
+                    <a href="{% url "user_profiles" follower.id %}"><img src="{{ follower.profile_photo.url }}" alt="Profile Photo"></a>
+                    {% else %}
+                    <a href="{% url "user_profiles" follower.id %}"><img src="https://pbs.twimg.com/profile_images/1609255247578558467/mJaEuasV_400x400.jpg" class="profile-image" alt="Profile Image"></a>
+                    {% endif %}
+                    <div class="follower-info">
+                        <h3>{{ follower.username }}</h3>
+                        <form action="{% url "follow" follower.id %}">
+                            <button>Подписаться</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Цвет фона страницы */
+}
+
+.followers-container {
+    max-width: 800px; /* Максимальная ширина контейнера */
+    margin: 50px auto; /* Выравнивание по центру */
+    padding: 20px;
+    background-color: #fff; /* Цвет фона контейнера */
+    border: 1px solid #ddd; /* Граница контейнера */
+    border-radius: 8px; /* Закругление углов контейнера */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Цвет текста заголовка */
+}
+
+.followers-list {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0;
+}
+
+.followers-list li {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.followers-list li img {
+    width: 50px; /* Ширина изображения профиля */
+    height: 50px; /* Высота изображения профиля */
+    border-radius: 50%; /* Закругление углов изображения профиля */
+    margin-right: 20px;
+}
+
+.follower-info h3 {
+    margin: 0;
+    color: #333; /* Цвет имени пользователя */
+}
+
+.follower-info button {
+    background-color: #0073e6; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px; /* Закругление углов кнопки */
+    cursor: pointer;
+}
+
+.follower-info button:hover {
+    background-color: #0056b3; /* Цвет фона кнопки при наведении */
+}
+
+</style>

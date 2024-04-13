@@ -1,0 +1,96 @@
+<!-- Форма поиска -->
+<form action="." method="GET" class="search-form">
+    {% csrf_token %}
+    <div class="search-input" >
+    {{ form }}
+</div>
+
+    <button type="submit" class="search-button">Search</button>
+</form>
+
+<!-- Отображение результатов поиска -->
+<div class="search-results">
+    {% if contens %}
+        {% for content in contens %}
+            <div class="search-result">
+                <a href="{% url "detail" content.id %}"><img src="{{ content.content_albom.url }}" class="result-image" alt=""></a>
+                <div class="result-info">
+                    <h2>{{ content.content_title }}</h2>
+                    <p>Uploaded by: {{ content.user }}</p>
+                    <p>Views: {{ content.viewer }}</p>
+                </div>
+                {% if content.user.profile_photo %}
+                    <a href="{% url "user_profiles" content.user.id %}"><img src="{{ content.user.profile_photo.url }}" class="profile-image" alt=""></a>
+                {% else %}
+                    <a href="{% url "user_profiles" content.user.id %}"><img src="https://pbs.twimg.com/profile_images/1609255247578558467/mJaEuasV_400x400.jpg" class="profile-image" alt=""></a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+</div>
+
+
+
+
+<style>
+
+    /* Стили для формы поиска */
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.search-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Стили для отображения результатов поиска */
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.search-result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.result-image {
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.result-info {
+    margin-top: 10px;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+</style>

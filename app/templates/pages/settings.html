@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница настройки</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        button {
+            background: #15b3df;
+            border: none;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+            display: inline-block;
+        }
+        button:hover {
+            background: #31d2ff;
+        }
+        .logout-btn {
+            background: #e74c3c;
+        }
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Настройки</h1>
+        <a href="{% url "profile_change" %}"><button>Изменить профиль</button></a>
+        <a href="{% url "password-change" %}"> <button>Изменить пароль</button></a>
+        <a href="{% url "logout" %}"><button>Выйти</button></a>
+        <a href="{% url "photo" %}"><button>Изменить Фото</button></a>
+
+    </div>
+</body>
+</html>
