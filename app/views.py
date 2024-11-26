@@ -423,10 +423,9 @@ def dislike(request: HttpRequest, pk) -> HttpRequest:
     if request.user not in dislike_model.dis_like.all():
         dislike_model.dis_like.add(request.user)
         if dislike_model.dis_like.count() > 1:
-            # Получаем путь к файлу и удаляем его
             file_path = os.path.join(settings.MEDIA_ROOT, str(dislike_model.video))
             os.remove(file_path)
-            dislike_model.delete()  # Удаляем сам объект ContentModel
+            dislike_model.delete()  
     else:
         dislike_model.dis_like.remove(request.user)
     
